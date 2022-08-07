@@ -1,0 +1,22 @@
+source: local
+id: {{ id }}
+version: {{ version }}
+name: {{ name }}
+type: {{ type }}
+handle: '{{ type }}:{{ name }}'
+display_name: {{ studlyName }}
+description: '{{ studlyName }} Description'
+namespace: {{ namespace }}
+core: false
+active: true
+installed: false
+order: 0
+package:
+    autoload:
+        files: ~
+        psr-4:
+            {{ namespace }}\: src/
+    require: ~
+    require-dev: ~
+    providers: ~
+external: ~

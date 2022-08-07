@@ -1,0 +1,59 @@
+{
+    "name": "plugide/define",
+    "description": "Plug IDE define.",
+    "type": "library",
+    "license": "MIT",
+    "support": {
+      "issues": "https://github.com/plugide/define/issues",
+      "source": "https://github.com/plugide/define"
+    },
+    "authors": [
+        {
+            "name": "Dev plugide",
+            "email": "dev@plugide.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/support": "^9.23",
+        "symfony/finder": "^6.1",
+        "symfony/mime": "^6.1",
+        "symfony/yaml": "^6.1"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.1",
+        "orchestra/testbench": "^7.6",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+      "psr-4": {
+        "Plugide\\Define\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Plugide\\Define\\Tests\\": "tests/"
+      }
+    },
+    "scripts": {
+      "format": "vendor/bin/pint --preset psr12",
+      "analyse": "vendor/bin/phpstan analyse",
+      "test" : "vendor/bin/phpunit"
+    },
+    "extra": {
+      "branch-alias": {
+        "dev-main": "1.x-dev"
+      },
+      "laravel": {
+        "providers": [
+          "Plugide\\Define\\Providers\\DefineServiceProvider"
+        ]
+      }
+    },
+    "config": {
+      "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

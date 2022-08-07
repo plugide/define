@@ -1,0 +1,27 @@
+source: local
+id: a2dfc17c-dd67-4be7-9273-f722c7fd198b
+version: 1.0.0
+name: demo
+type: plugin
+handle: plugin:demo
+display_name: Demo
+description: Demo Description
+parent: ~
+namespace: Plugest\Demo
+observer: ~
+core: false
+active: true
+installed: false
+order: 0
+package:
+    autoload:
+        files: ~
+        psr-4:
+          Plugest\Demo\: src/
+    require: ~
+    require-dev: ~
+    providers: ~
+external: ~
+
+
+

@@ -1,0 +1,23 @@
+config:
+  default: plugin
+  types:
+    - plugin
+  folder: ~
+  finder:
+    filename:
+      - .plugin.yml
+    exclude:
+      - database
+      - node_modules
+      - resources
+      - public
+      - storage
+      - src
+      - vendor
+assets:
+  enable: true
+  domain: ~
+  name: plug.assets
+  route: /assets/{plugin:handle}/{patch}
+  class: Plugide\Define\Support\Assets
+external: ~
