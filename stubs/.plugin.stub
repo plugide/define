@@ -11,6 +11,7 @@ core: false
 active: true
 installed: false
 order: 0
+public: public
 package:
     autoload:
         files: ~
