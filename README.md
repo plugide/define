@@ -12,7 +12,7 @@ In addition to providing a modular structure, Plug IDE allows you to organize yo
 
 To get started with plug IDE, simply run:
 
-     composer require plugide/playground --dev
+     composer require plugide/define
 
 ### Define 
 
