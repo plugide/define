@@ -46,13 +46,9 @@ class Plugin extends Prototype implements Plugable, UrlRoutable
      */
     public function namespace(string $space = null)
     {
-        $namespace = $this->type()->namespace;
+        $namespace = $this->get('namespace');
 
-        if ($this->exists) {
-            $namespace = $this->get('namespace');
-        }
-
-        if ($space) {
+        if ($space && $namespace) {
             $namespace = $namespace."\\".$space;
         }
 
@@ -67,14 +63,14 @@ class Plugin extends Prototype implements Plugable, UrlRoutable
      */
     public function path(string $filename = null)
     {
-        $path =  $this->type()->path;
+        $path = null;
 
         if ($this->exists) {
             $path = dirname($this->common('file')->getPathname());
         }
 
-        if ($filename) {
-            return $path.'/'.$filename;
+        if ($filename && $path) {
+            $path = $path.'/'.$filename;
         }
 
         return $path;
