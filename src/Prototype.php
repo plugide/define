@@ -3,16 +3,19 @@
 namespace Plugide\Define;
 
 use ArrayAccess;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
+use Plugide\Define\Support\Concerns\HasRouting;
 
-abstract class Prototype implements Arrayable, ArrayAccess, Jsonable, JsonSerializable
+abstract class Prototype implements Arrayable, ArrayAccess, Jsonable, JsonSerializable, UrlRoutable
 {
-    use ForwardsCalls,
+    use HasRouting,
+        ForwardsCalls,
         Macroable {
             __call as macroCall;
         }

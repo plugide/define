@@ -2,20 +2,19 @@
 
 namespace Plugide\Define;
 
-use Illuminate\Contracts\Routing\UrlRoutable;
 use Plugide\Define\Contracts\Plugable;
 use Plugide\Define\Support\Concerns;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * @property mixed exists
- * @property mixed type
+ * @property bool exists
+ * @property string type
+ * @property string public
  */
-class Plugin extends Prototype implements Plugable, UrlRoutable
+class Plugin extends Prototype implements Plugable
 {
     use Concerns\HasCommon;
     use Concerns\HasEvents;
-    use Concerns\HasRouting;
 
     /**
      * Collect the plugins
@@ -31,9 +30,9 @@ class Plugin extends Prototype implements Plugable, UrlRoutable
      * Find file for plugin asset.
      *
      * @param string $path
-     * @return mixed|string
+     * @return string
      */
-    public function assets(string $path): string
+    public function assets(string $path)
     {
         return route(Plug::data('assets.name'), [$this->get(Plug::data('assets.key') ?? 'handle'), $path]);
     }
@@ -59,7 +58,7 @@ class Plugin extends Prototype implements Plugable, UrlRoutable
      * Path plugin.
      *
      * @param string|null $filename
-     * @return mixed|string
+     * @return null|string
      */
     public function path(string $filename = null)
     {
@@ -74,6 +73,17 @@ class Plugin extends Prototype implements Plugable, UrlRoutable
         }
 
         return $path;
+    }
+
+    /**
+     * Find file public.
+     *
+     * @param string|null $path
+     * @return string
+     */
+    public function public(string $path = null): string
+    {
+        return $this->path($this->public).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**

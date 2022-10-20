@@ -64,11 +64,12 @@ class Plug
      * Start plug and register all plug-ins.
      *
      * @param string|null $path
+     * @param bool $force
      * @return self
      */
-    public static function start(string $path = null): self
+    public static function start(string $path = null, bool $force = false): self
     {
-        if (is_null(self::$path)) {
+        if (is_null(self::$path) || $force) {
             self::root($path ?? base_path());
 
             self::$plugin = self::data('config.class.plugin') ?? Plugin::class;
@@ -239,15 +240,15 @@ class Plug
         $plugin = file_exists($define) ? require $define : new self::$plugin();
 
         $data = Yaml::parseFile($file->getPathname());
-        if ($data['core']) {
-            $data['active'] = $data['core'];
-        }
+        $data['public'] = $data['public'] ?? 'public';
 
-        return $plugin->newInstance($data, true)
-            ->common([
-                'file' => $file,
-                'observer' => file_exists($observer) ? require $observer : null,
-            ]);
+        return $plugin->newInstance(
+            attributes: $data,
+            exists: true
+        )->common([
+            'file' => $file,
+            'observer' => file_exists($observer) ? require $observer : null
+        ]);
     }
 
     /**

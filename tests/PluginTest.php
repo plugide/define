@@ -26,6 +26,8 @@ class PluginTest extends TestCase
      */
     public function test_plugin_file_class()
     {
-        $this->assertTrue(Test::working() === 'working');
+        $this->assertTrue(
+            (bool) Test::working() == 'working'
+        );
     }
 }

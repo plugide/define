@@ -19,7 +19,7 @@ class DefineServiceProvider extends ServiceProvider
     public function register()
     {
         Plug::start();
-        $this->pluginExtend();
+        $this->registerPlugins();
     }
 
     /**
@@ -38,7 +38,7 @@ class DefineServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function pluginExtend()
+    public function registerPlugins()
     {
         foreach (Plug::plugins() as $plugin) {
             foreach ($plugin->package['providers'] ?? [] as $provider) {
@@ -61,7 +61,7 @@ class DefineServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register Assets Library´s.
+     * Register Assets Plugin´s.
      *
      * @return void
      */

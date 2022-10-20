@@ -17,7 +17,7 @@ class Assets
      */
     public function __invoke(Plugin $plugin, string $path)
     {
-        $realPath = $plugin->path($plugin->public.'/'.$path);
+        $realPath = $plugin->public($path);
 
         if (! realpath($realPath)) {
             abort(404);
