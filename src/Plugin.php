@@ -95,7 +95,7 @@ class Plugin extends Prototype implements Plugable
     public function type($type = null)
     {
         if (is_null($type)) {
-            return Plug::findType($this->type);
+            return Plug::types($this->type);
         }
 
         $this->type = $type;

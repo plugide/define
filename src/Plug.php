@@ -292,46 +292,30 @@ class Plug
     }
 
     /**
-     * Find the with the given key.
+     * Get all types | Find the type with the given key.
      *
      * @param string|null $key
-     * @return \Plugide\Define\Contracts\Typable
+     * @return mixed|\Plugide\Define\Contracts\Typable
      */
-    public static function findType(?string $key)
+    public static function types(string $key = null)
     {
-        return static::$types[$key] ?? null;
+        return $key ? static::$types[$key] ?? null : static::$types;
     }
 
     /**
-     * Get all types.
+     * Manage stubs.
      *
-     * @return mixed
+     * @param string|null $folder
+     * @return array
      */
-    public static function types()
+    public static function stubs(string $folder = null)
     {
-        return static::$types;
-    }
+        if ($folder) {
+            $data = Yaml::parseFile($folder.'/.stub.yml');
+            $data['folder'] = $folder;
+            self::$stubs[$data['name']] = $data;
+        }
 
-    /**
-     * Add stub folder.
-     *
-     * @param $folder
-     * @return mixed
-     */
-    public static function addStub($folder)
-    {
-        $data = Yaml::parseFile($folder.'/.stub.yml');
-        $data['folder'] = $folder;
-        self::$stubs[$data['name']] = $data;
-    }
-
-    /**
-     * Get all stubs.
-     *
-     * @return mixed
-     */
-    public static function stubs()
-    {
         return static::$stubs;
     }
 }
